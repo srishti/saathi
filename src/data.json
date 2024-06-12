@@ -1,0 +1,57 @@
+{
+  "input": [
+    {
+      "data-identifier": "example-1",
+      "pageUrl": "",
+      "actions": [
+        {
+          "type": "audio",
+          "text": "Hello, I am Saathi. I am here to help you. What can I do for you?",
+          "languageCode": "fr-CA"
+        }
+      ]
+    },
+    {
+      "data-identifier": "example-2",
+      "pageUrl": "",
+      "actions": [
+        {
+          "type": "audio",
+          "text": "Hello, I am Srishti. I live in Bengaluru.",
+          "languageCode": "hi-IN"
+        },
+        {
+          "type": "text",
+          "text": "Hello, I am Saathi. I am here to help you. What can I do for you?"
+        },
+        {
+          "type": "interaction",
+          "event": "focus",
+          "text": "Hello, I am Saathi. I am here to help you. What can I do for you?",
+          "languageCode": "en-IN"
+        }
+      ]
+    },
+    {
+      "data-identifier": "example-3",
+      "pageUrl": "support",
+      "actions": [
+        {
+          "type": "audio",
+          "text": "Hello, I am Saathi. I am here to help you. What can I do for you?",
+          "languageCode": "hi-IN"
+        },
+        {
+          "type": "text",
+          "text": "Hello, I am Saathi. I am here to help you. What can I do for you?"
+        },
+        {
+          "type": "interaction",
+          "event": "focus",
+          "text": "Hello, I am Saathi. I am here to help you. What can I do for you?",
+          "languageCode": "en-IN"
+        }
+      ]
+    }
+  ]
+}
