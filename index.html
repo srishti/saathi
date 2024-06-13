@@ -4,13 +4,31 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <style>
+            body.dimmed *:not(.highlighted) {
+                opacity: 0.2;
+                /* pointer-events: none; */
+            }
+
+            .highlighted {
+                opacity: 1;
+                z-index: 10;
+                position: relative;
+                padding: 0.75rem;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+                border-radius: 0.5rem;
+            }
+        </style>
     </head>
     <body>
         <p>Google Text-to-Speech</p>
         <h2 data-identifier="example-1">Example 1</h2>
         <h2 data-identifier="example-2">Example 2</h2>
-        <button id="synthesize">Synthesize</button>
-        <audio id="audio" controls></audio>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="screenshot">Screenshot</button>
         <script type="module" src="./src/script.js"></script>
     </body>
 </html>

@@ -6,7 +6,7 @@
     "module": "dist/module.js",
     "source": "src/index.js",
     "scripts": {
-        "start": "npx parcel",
+        "start": "npx parcel index.html",
         "build": "npx parcel build src/index.js && node scripts/postbuild.js",
         "bundle-analyzer": "npx parcel build --reporter @parcel/reporter-bundle-analyzer",
         "bump:version": "standard-version",
