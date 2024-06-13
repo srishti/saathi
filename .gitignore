@@ -1,2 +1,5 @@
-# NPM
+# system
+.DS_Store
+
+# npm
 node_modules
