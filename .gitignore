@@ -3,3 +3,9 @@
 
 # npm
 node_modules
+
+# parcel
+.parcel-cache
+
+# bundle
+dist

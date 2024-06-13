@@ -1,19 +1,26 @@
 {
-  "name": "saathi",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/srishti/saathi.git"
-  },
-  "author": "Srishti Gupta",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/srishti/saathi/issues"
-  },
-  "homepage": "https://github.com/srishti/saathi#readme"
+    "name": "saathi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/main.js",
+    "module": "dist/module.js",
+    "source": "src/index.js",
+    "scripts": {
+        "start": "npx parcel",
+        "build": "npx parcel build",
+        "bundle-analyzer": "npx parcel build --reporter @parcel/reporter-bundle-analyzer"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/srishti/saathi.git"
+    },
+    "author": "Srishti Gupta",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/srishti/saathi/issues"
+    },
+    "homepage": "https://github.com/srishti/saathi#readme",
+    "devDependencies": {
+        "parcel": "2.12.0"
+    }
 }
