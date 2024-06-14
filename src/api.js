@@ -5,13 +5,10 @@ import * as Constants from './constants.js';
  * @param {*} action action object defining the action to be taken
  * @returns url and targetElement of the audio file
  */
-export const convertTextToSpeech = async ({
-    text,
-    languageCode,
-}) => {
+export const convertTextToSpeech = async ({ baseUrl, text, languageCode }) => {
     const payload = JSON.stringify({ text, languageCode });
 
-    const url = `${Constants.SAATHI_SERVER_HOST}/tts`;
+    const url = `${baseUrl}/tts`;
 
     try {
         const response = await fetch(url, {
@@ -41,10 +38,15 @@ export const convertTextToSpeech = async ({
  * @param {*} image base64 encoded image
  * @returns url of the audio file
  */
-export const convertImageToSpeech = async ({ languageCode, image }) => {
-    const payload = JSON.stringify({ languageCode, image });
+export const convertImageToSpeech = async ({
+    baseUrl,
+    language,
+    image,
+    systemInstruction,
+}) => {
+    const payload = JSON.stringify({ language, image, systemInstruction });
 
-    const url = `${Constants.SAATHI_SERVER_HOST}/img-to-text`;
+    const url = `${baseUrl}/img-to-text`;
 
     try {
         const response = await fetch(url, {

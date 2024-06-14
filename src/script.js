@@ -1,6 +1,10 @@
 import * as Constants from './constants.js';
 import data from './data.json' assert { type: 'json' };
-import { injectAudioElement, highlightElement, removeHighlightFromElement } from './utils.js';
+import {
+    injectAudioElement,
+    highlightElement,
+    removeHighlightFromElement,
+} from './utils.js';
 import { convertTextToSpeech, convertImageToSpeech } from './api.js';
 
 export class Saathi {
@@ -9,18 +13,26 @@ export class Saathi {
         this._currentAudioIndex = 0;
         this._audioElement = null;
         this._currentTargetElement = null;
+        this._SAATHI_SERVER_HOST = '';
     }
 
-    _highlightAndPlay() {
+    set setSaathiServer(_SAATHI_SERVER_HOST) {
+        this._SAATHI_SERVER_HOST = _SAATHI_SERVER_HOST;
+    }
+
+    _highlightAndPlay(args) {
+        const { highlight = true } = args || {};
         if (this._currentAudioIndex >= this._audioUrls.length) {
             return;
         }
-        const { url, targetElement = null } = this._audioUrls[this._currentAudioIndex];
+        const { url, targetElement = null } =
+            this._audioUrls[this._currentAudioIndex];
         this._currentTargetElement = targetElement;
-        if (this._currentTargetElement) {
+        if (this._currentTargetElement && highlight) {
             highlightElement(this._currentTargetElement);
         }
-        this._audioElement = document.getElementById('audio') || injectAudioElement();
+        this._audioElement =
+            document.getElementById('audio') || injectAudioElement();
         this._audioElement.src = url;
         this._audioElement.muted = true; // Start muted to allow autoplay
         this._audioElement
@@ -54,15 +66,16 @@ export class Saathi {
     }
 
     _takeAudioAction = async (action, targetElement) => {
-        const url = await convertTextToSpeech({ 
-            text: action.text, 
-            languageCode: action.languageCode, 
-            audioUrls: this._audioUrls, 
-            targetElement 
+        const url = await convertTextToSpeech({
+            baseUrl: this._SAATHI_SERVER_HOST,
+            text: action.text,
+            languageCode: action.languageCode,
+            audioUrls: this._audioUrls,
+            targetElement,
         });
         this._audioUrls.push({ url, targetElement });
         this._highlightAndPlay();
-    }
+    };
 
     start = async (data) => {
         console.log('Saathi initialized!');
@@ -94,9 +107,15 @@ export class Saathi {
                             break;
                         }
                         case 'interaction': {
-                            targetElement.addEventListener(action.event, async () => {
-                                await this._takeAudioAction(action, targetElement);
-                            });
+                            targetElement.addEventListener(
+                                action.event,
+                                async () => {
+                                    await this._takeAudioAction(
+                                        action,
+                                        targetElement
+                                    );
+                                }
+                            );
                             break;
                         }
                         default: {
@@ -136,16 +155,29 @@ export class Saathi {
         }
     };
 
-    screenshot = async () => {
+    startScreenshot = () => {
+        this._highlightAndPlay({
+            highlight: false,
+        });
+    };
+
+    screenshot = async ({ language, image, systemInstruction }) => {
         this.stop();
-        // TODO: take screenshot here
-        const url = await convertImageToSpeech({ language, image, audioUrls: this._audioUrls });
+        const url = await convertImageToSpeech({
+            baseUrl: this._SAATHI_SERVER_HOST,
+            language,
+            image,
+            systemInstruction,
+        });
         this._audioUrls.push({ url });
-    }
+        this.startScreenshot();
+    };
 }
 
+// This flow is for testing
 document.addEventListener('DOMContentLoaded', () => {
     const saathi = new Saathi();
+    saathi.setSaathiServer = 'http://localhost:7779';
 
     document.getElementById('start').addEventListener('click', () => {
         saathi.start(data);
@@ -164,6 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('screenshot').addEventListener('click', () => {
-        saathi.screenshot();
+        saathi.screenshot({
+            language: 'Hindi',
+            image: 'gs://saathi/ynrju/1718299319342/canvas_image.png',
+            systemInstruction:
+                'This image is captured from the Payouts section of the Supplier panel i.e. Meesho has paid out or yet to pay amounts',
+        });
     });
 });
