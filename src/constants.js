@@ -8,5 +8,3 @@ export const ERROR = {
     ELEMENT_NOT_FOUND: 'Element not found',
     NON_SUPPORTED_ACTION: 'Unsupported action type',
 };
-
-export const SAATHI_SERVER_HOST = 'http://localhost:3000'; 
