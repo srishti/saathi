@@ -1,13 +1,14 @@
 {
     "name": "@meesho/saathi",
-    "version": "1.6.0",
+    "version": "1.0.0",
     "description": "",
     "main": "dist/main.js",
     "module": "dist/module.js",
     "source": "src/index.js",
     "scripts": {
+        "clean": "rm -rf dist .parcel-cache",
         "start": "npx parcel index.html",
-        "build": "npx parcel build src/index.js && node scripts/postbuild.js",
+        "build": "npx parcel build ; node scripts/postbuild.js",
         "bundle-analyzer": "npx parcel build --reporter @parcel/reporter-bundle-analyzer",
         "bump:version": "standard-version",
         "release:dev": "chmod +x ./scripts/release-dev.sh && ./scripts/release-dev.sh"

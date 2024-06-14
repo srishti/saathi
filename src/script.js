@@ -162,4 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('pause').addEventListener('click', () => {
         saathi.pause();
     });
+
+    document.getElementById('screenshot').addEventListener('click', () => {
+        saathi.screenshot();
+    });
 });
