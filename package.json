@@ -1,16 +1,18 @@
 {
-    "name": "@meesho/saathi",
-    "version": "1.6.0",
+    "name": "saathi",
+    "version": "1.0.0",
     "description": "",
     "main": "dist/main.js",
     "module": "dist/module.js",
     "source": "src/index.js",
     "scripts": {
-        "start": "npx parcel",
-        "build": "npx parcel build src/index.js && node scripts/postbuild.js",
+        "clean": "rm -rf dist .parcel-cache",
+        "start": "npx parcel index.html",
+        "build": "npx parcel build ; node scripts/postbuild.js",
         "bundle-analyzer": "npx parcel build --reporter @parcel/reporter-bundle-analyzer",
         "bump:version": "standard-version",
-        "release:dev": "chmod +x ./scripts/release-dev.sh && ./scripts/release-dev.sh"
+        "release:dev": "chmod +x ./scripts/release-dev.sh && ./scripts/release-dev.sh",
+        "release:prod": "chmod +x ./scripts/release-prod.sh && ./scripts/release-prod.sh"
     },
     "repository": {
         "type": "git",

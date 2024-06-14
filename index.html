@@ -4,13 +4,24 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="./index.css"></link>
     </head>
     <body>
         <p>Google Text-to-Speech</p>
         <h2 data-identifier="example-1">Example 1</h2>
         <h2 data-identifier="example-2">Example 2</h2>
-        <button id="synthesize">Synthesize</button>
-        <audio id="audio" controls></audio>
+        <input
+            type="text"
+            placeholder="focus here"
+            data-identifier="example-3"
+        />
+        <br />
+        <br />
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="screenshot">Screenshot</button>
         <script type="module" src="./src/script.js"></script>
     </body>
 </html>
